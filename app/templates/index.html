@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %} Scout Universe {% endblock %}
+
+{% block page_content %}
+
+<div class = "jumbotron p-3">
+    <div class = "well text-md-center">
+        {% if current_user.is_authenticated %}
+            {% if current_user.scout %}
+                <h2><a href="/scouts">View and Edit Players</a></h2>
+            {% else %}
+                <h2><a href="/managers">View Players</a></h2>
+            {% endif %}
+        {% else %}
+            Please log in to view players.
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

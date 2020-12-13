@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+
+{% block title %} Database {% endblock %}
+
+{% block body %}
+
+<div class = "container">
+    <div class = "row">
+        <div class = "col md-12">
+            <div class = "jumbotron p-3">
+                <h2>Manage Players 
+                    
+                </h2>
+                <a href="{{ url_for('main.addplayer') }}">Add New Player</a>
+
+                <table class="table table-hover table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>First Name</th>
+                        <th>Middle Initial</th>
+                        <th>Last Name</th>
+                        <th>Date of Birth</th>
+                        <th>Age</th>
+                        <th>Home Town</th>
+                        <th>Height</th>
+                        <th>Weight (lbs)</th>
+                    </tr>
+                    {% for player in stats %}
+                    <tr>
+                        <td>{{ player.id }}</td>
+                        <td>{{ player.first_name }}</td>
+                        <td>{{ player.middle_initial }}</td>
+                        <td>{{ player.last_name }}</td>
+                        <td>{{ player.date_of_birth }}</td>
+                        <td>{{ player.age }}</td>
+                        <td>{{ player.home_town }}</td>
+                        <td>{{ player.height }}</td>
+                        <td>{{ player.weight }}</td>
+                        <td>
+                            <a href="/delete/{{player.id}}" class="btn btn-danger btn-xs" onclick="return confirm('Are You Sure You Want To Delete?')">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+</table>
+</div>
+<div>
+    <a href="{{ url_for('main.index') }}">Go Home</a>
+</div>
+
+
+
+{% endblock %}
